@@ -1,0 +1,39 @@
+echo "*** Starting build of parser frame"
+
+echo "*** Compiling each module"
+
+gcc -c -Wall driver.c
+
+gcc -c -Wall lexer.c
+gcc -c -Wall parser.c
+gcc -c -Wall symtab.c
+gcc -c -Wall keytoktab.c
+gcc -c -Wall optab.c
+
+echo "*** Compiling parser 2, 3, 4, 5"
+
+gcc -c -Wall parser2.c
+gcc -c -Wall parser3.c
+gcc -c -Wall parser4.c
+gcc -c -Wall parser5.c
+
+echo "*** End of separate module compilation"
+
+echo "*** Save old parser output"
+cp parser.out parser.old
+
+echo "*** Build and test the frame demo"
+gcc  -o parser driver.c parser.c
+echo "*** Running test"
+./parser > parser.out
+more parser.out
+
+echo "*** Comparing current and previous outputs "
+diff parser.old parser.out
+echo "*** End of comparison"
+
+echo "*** Tidy up ..."
+rm *.o
+echo "*** End of tidy up"
+
+echo "*** End of parser test"
