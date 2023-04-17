@@ -30,13 +30,21 @@ static int  plex  = 0;               /* current index lexeme  buffer  */
 /**********************************************************************/
 /* buffer functions                                                   */
 /**********************************************************************/
+
 /**********************************************************************/
 /* Read the input file into the buffer                                */
 /**********************************************************************/
 
 static void get_prog()
 {
-   printf("\n *** TO BE DONE");
+    FILE* fp = fopen("test.pas", "r");
+    char c;
+    if(!fp)return;
+    while(((c = fgetc(fp)) != '$'))
+        buffer[pbuf++] = c;
+    buffer[pbuf] = '$';
+    pbuf =  0;
+    fclose(fp);
 }     
 
 /**********************************************************************/
@@ -45,7 +53,14 @@ static void get_prog()
 
 static void pbuffer()
 {   
-   printf("\n *** TO BE DONE");
+    pbuf = 0;
+    char c = buffer[pbuf];
+    char* pc = &c;
+    while(strcmp(pc, "$")){
+        printf("%c", c);
+        c = buffer[pbuf++];
+    }
+    pbuf = 0;
 }
 
 /**********************************************************************/
@@ -54,7 +69,7 @@ static void pbuffer()
 
 static void get_char()
 {   
-   printf("\n *** TO BE DONE");
+   lexbuf[plex++] = buffer[pbuf++];
 }
 
 /**********************************************************************/
@@ -69,7 +84,22 @@ static void get_char()
 /**********************************************************************/
 int get_token()
 {  
-   printf("\n *** TO BE DONE"); return 0;
+    plex = 0;
+    while(isspace(lexbuf[plex])) plex++;
+
+    if(isalpha(lexbuf[plex])){
+        get_char();
+        while(isalnum(lexbuf[plex])){
+            get_char();
+        }
+        
+    } else if(isdigit(lexbuf[plex])){
+        while(isdigit(lexbuf[plex])){
+            get_char();
+        }
+    }
+        lexbuf[plex] = '\0';
+        return lex2tok(lexbuf);
 }
 
 /**********************************************************************/
