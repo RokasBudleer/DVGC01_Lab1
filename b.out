@@ -1,0 +1,50 @@
+*** starting build of parser demo
+*** compiling each module
+*** End of separate module compilation
+*** Build and test the driver programs
+*** testing the driver programs
+Saving previous output
+*** Running tests
+*** Comparing current and previous outputs 
+*** Lexer output
+*** Keytoktab output
+*** Symtab output
+*** Optab output
+*** End of comparison
+*** end of driver tests
+*** Building Parser
+*** Running parser test (testok1.pas)
+
+________________________________________________________ 
+ THE PROGRAM TEXT
+________________________________________________________ 
+program testok1(input, output);  
+var A, B, C: integer;  
+
+begin
+A := B + C * 2  
+end.
+
+
+$
+________________________________________________________ 
+PARSE SUCCESSFUL! 
+________________________________________________________ 
+________________________________________________________ 
+ THE SYMBOL TABLE
+________________________________________________________ 
+       NAME       ROLE       TYPE      SIZE      ADDR     
+________________________________________________________ 
+    testok1    program    program        12         0 
+          A        var    integer         4         0 
+          B        var    integer         4         4 
+          C        var    integer         4         8 
+________________________________________________________ 
+ STATIC STORAGE REQUIRED is 12 BYTES
+________________________________________________________ 
+*** End of parser test
+*** Running all tests (testall.sh)
+*** Saving previous output
+*** Running tests
+*** Comparing outputs
+*** End of all tests

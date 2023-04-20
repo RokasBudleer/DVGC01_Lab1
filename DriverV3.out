@@ -1,5 +1,16 @@
 
  *** In  parser
+_______________________________________________________
+ THE PROGRAM TEXT
+_______________________________________________________
+program testok1(input, output);  
+var A, B, C: integer;  
+
+begin
+A := B + C * 2  
+end.
+$
+_______________________________________________________
  *** In  program_header
  --------In match expected: program found: program
  --------In match expected: id found: id
@@ -47,7 +58,7 @@
  *** In term
  *** In factor
  *** In operand
- --------In match expected: number found: number
+ --------In match expected: id found: id
  --------In match expected: end found: end
  --------In match expected: . found: . 
  Parse Successful! 

@@ -1,6 +1,11 @@
-echo "*** Starting build of parser frame"
+echo "*** starting build of parser demo"
 
-echo "*** Compiling each module"
+echo "*** compiling each module"
+
+gcc -c -Wall Dlexer.c
+gcc -c -Wall Dsymtab.c
+gcc -c -Wall Dkeytoktab.c
+gcc -c -Wall Doptab.c
 
 gcc -c -Wall driver.c
 
@@ -10,30 +15,58 @@ gcc -c -Wall symtab.c
 gcc -c -Wall keytoktab.c
 gcc -c -Wall optab.c
 
-echo "*** Compiling parser 2, 3, 4, 5"
-
-gcc -c -Wall parser2.c
-gcc -c -Wall parser3.c
-gcc -c -Wall parser4.c
-gcc -c -Wall parser5.c
-
 echo "*** End of separate module compilation"
 
-echo "*** Save old parser output"
-cp parser.out parser.old
+echo "*** Build and test the driver programs"
 
-echo "*** Build and test the frame demo"
-gcc  -o parser driver.c parser.c
-echo "*** Running test"
-./parser > parser.out
-more parser.out
+gcc  -o tlexer Dlexer.c     keytoktab.c    lexer.c
+gcc  -o ttok   Dkeytoktab.c keytoktab.c
+gcc  -o tsym   Dsymtab.c    keytoktab.c    symtab.c
+gcc  -o top    Doptab.c     keytoktab.c    optab.c
+
+echo "*** testing the driver programs"
+
+echo "Saving previous output"
+cp Dlexer.out Dlexer.old
+cp Dtoktab.out Dtoktab.old
+cp Dsymtab.out Dsymtab.old
+cp Doptab.out Doptab.old
+
+echo "*** Running tests"
+
+./tlexer < testok1.pas > Dlexer.out
+./ttok   > Dtoktab.out
+./tsym   > Dsymtab.out
+./top    > Doptab.out
 
 echo "*** Comparing current and previous outputs "
-diff parser.old parser.out
+echo "*** Lexer output"
+diff Dlexer.old Dlexer.out
+echo "*** Keytoktab output"
+diff Dtoktab.old Dtoktab.out
+echo "*** Symtab output"
+diff Dsymtab.old Dsymtab.out
+echo "*** Optab output"
+diff Doptab.old Doptab.out
 echo "*** End of comparison"
 
-echo "*** Tidy up ..."
-rm *.o
-echo "*** End of tidy up"
+echo "*** end of driver tests"
+
+echo "*** Building Parser"
+
+gcc -o parser driver.c lexer.c parser.c keytoktab.c symtab.c optab.c
+
+echo "*** Running parser test (testok1.pas)"
+
+./parser < testok1.pas
 
 echo "*** End of parser test"
+
+echo "*** Running all tests (testall.sh)"
+echo "*** Saving previous output"
+cp testall.out testall.old
+echo "*** Running tests"
+./testall.sh > testall.out
+echo "*** Comparing outputs"
+diff testall.old testall.out
+echo "*** End of all tests"

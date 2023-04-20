@@ -30,11 +30,11 @@ typedef struct tab {
 /**********************************************************************/
 static tab tokentab[ ] = {
         {"id", 	        id},
-	{"number", 	number},
+	{"number", 	    number},
 	{":=", 	        assign},
-	{"undef", 	undef},
-	{"predef", 	predef},
-	{"tempty", 	tempty},
+	{"undef", 	    undef},
+	{"predef", 	    predef},
+	{"tempty", 	    tempty},
 	{"error",        error},
 	{"type",         typ},
 	{"$",            '$'},
@@ -89,18 +89,15 @@ void p_toktab()
 /**********************************************************************/
 toktyp lex2tok(char * fplex)
 {
-   for(int i = 0; i < sizeof(keywordtab)/sizeof(tab); i++){
-		if(!strcmp(fplex, keywordtab[i].text)){
-			return keywordtab[i].token;
-		}
-   }
-
    for(int i = 0; i < sizeof(tokentab)/sizeof(tab); i++){
 		if(!strcmp(fplex, tokentab[i].text)){
 			return tokentab[i].token;
 		}
    }
-   return id;
+   if(isdigit(*fplex)){
+		return number;
+   }
+   return nfound;
 }
 
 /**********************************************************************/

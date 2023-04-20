@@ -1,0 +1,1243 @@
+testing mytests/fun1.pas
+
+________________________________________________________ 
+ THE PROGRAM TEXT
+________________________________________________________ 
+program fun1(input, output);
+var A, B, A: integer;  
+
+begin
+A := B + C * 2  
+end.
+$
+________________________________________________________ 
+SEMANTIC: duplicate variable name
+SEMANTIC: id not found in ST
+SEMANTIC: type mismatch in assign
+ SYNTAX: expected: end found: C (in match)
+ SYNTAX: expected: . found: C (in match)
+________________________________________________________ 
+________________________________________________________ 
+ THE SYMBOL TABLE
+________________________________________________________ 
+       NAME       ROLE       TYPE      SIZE      ADDR     
+________________________________________________________ 
+       fun1    program    program         8         0 
+          A        var    integer         4         0 
+          B        var    integer         4         4 
+________________________________________________________ 
+ STATIC STORAGE REQUIRED is 8 BYTES
+________________________________________________________ 
+testing mytests/fun2.pas
+
+________________________________________________________ 
+ THE PROGRAM TEXT
+________________________________________________________ 
+program fun2(input, output);
+var A, B, C: integer;
+
+begin
+3A := B + C * 2
+end.
+$
+________________________________________________________ 
+ SYNTAX: expected: id found: 3 (in match)
+ SYNTAX: expected: := found: 3 (in match)
+SEMANTIC: type mismatch in assign
+ SYNTAX: expected: end found: A (in match)
+ SYNTAX: expected: . found: A (in match)
+________________________________________________________ 
+________________________________________________________ 
+ THE SYMBOL TABLE
+________________________________________________________ 
+       NAME       ROLE       TYPE      SIZE      ADDR     
+________________________________________________________ 
+       fun2    program    program        12         0 
+          A        var    integer         4         0 
+          B        var    integer         4         4 
+          C        var    integer         4         8 
+________________________________________________________ 
+ STATIC STORAGE REQUIRED is 12 BYTES
+________________________________________________________ 
+testing mytests/fun3.pas
+
+________________________________________________________ 
+ THE PROGRAM TEXT
+________________________________________________________ 
+program fun3(input, output);
+var A, B, C: integer;
+
+begin
+A :
+   = B + C * 2
+end.
+$
+________________________________________________________ 
+ SYNTAX: expected: := found: : (in match)
+SEMANTIC: *** UNEXPECTED SYMBOL ***
+SEMANTIC: type mismatch in assign
+ SYNTAX: expected: end found: : (in match)
+ SYNTAX: expected: . found: : (in match)
+________________________________________________________ 
+________________________________________________________ 
+ THE SYMBOL TABLE
+________________________________________________________ 
+       NAME       ROLE       TYPE      SIZE      ADDR     
+________________________________________________________ 
+       fun3    program    program        12         0 
+          A        var    integer         4         0 
+          B        var    integer         4         4 
+          C        var    integer         4         8 
+________________________________________________________ 
+ STATIC STORAGE REQUIRED is 12 BYTES
+________________________________________________________ 
+testing mytests/fun4.pas
+
+________________________________________________________ 
+ THE PROGRAM TEXT
+________________________________________________________ 
+program fun4(input, output);
+var A, B, C: integer;
+    D, E, F: integer;
+
+begin
+A := B + C * 2
+end.
+$
+________________________________________________________ 
+PARSE SUCCESSFUL! 
+________________________________________________________ 
+________________________________________________________ 
+ THE SYMBOL TABLE
+________________________________________________________ 
+       NAME       ROLE       TYPE      SIZE      ADDR     
+________________________________________________________ 
+       fun4    program    program        24         0 
+          A        var    integer         4         0 
+          B        var    integer         4         4 
+          C        var    integer         4         8 
+          D        var    integer         4        12 
+          E        var    integer         4        16 
+          F        var    integer         4        20 
+________________________________________________________ 
+ STATIC STORAGE REQUIRED is 24 BYTES
+________________________________________________________ 
+testing mytests/fun5.pas
+
+________________________________________________________ 
+ THE PROGRAM TEXT
+________________________________________________________ 
+program fun5(input, output);
+var A, B, C: integer;
+
+begin
+A := B + C * 2
+end.
+
+OOOOPS!!!
+
+
+$
+________________________________________________________ 
+PARSE SUCCESSFUL! 
+________________________________________________________ 
+________________________________________________________ 
+ THE SYMBOL TABLE
+________________________________________________________ 
+       NAME       ROLE       TYPE      SIZE      ADDR     
+________________________________________________________ 
+       fun5    program    program        12         0 
+          A        var    integer         4         0 
+          B        var    integer         4         4 
+          C        var    integer         4         8 
+________________________________________________________ 
+ STATIC STORAGE REQUIRED is 12 BYTES
+________________________________________________________ 
+testing mytests/sem1.pas
+
+________________________________________________________ 
+ THE PROGRAM TEXT
+________________________________________________________ 
+program sem1(input, output);
+var A, B, C: integer;
+
+begin
+A := D + C * 2  
+end.
+$
+________________________________________________________ 
+SEMANTIC: id not found in ST
+SEMANTIC: type mismatch in assign
+ SYNTAX: expected: end found: D (in match)
+ SYNTAX: expected: . found: D (in match)
+________________________________________________________ 
+________________________________________________________ 
+ THE SYMBOL TABLE
+________________________________________________________ 
+       NAME       ROLE       TYPE      SIZE      ADDR     
+________________________________________________________ 
+       sem1    program    program        12         0 
+          A        var    integer         4         0 
+          B        var    integer         4         4 
+          C        var    integer         4         8 
+________________________________________________________ 
+ STATIC STORAGE REQUIRED is 12 BYTES
+________________________________________________________ 
+testing mytests/sem2.pas
+
+________________________________________________________ 
+ THE PROGRAM TEXT
+________________________________________________________ 
+program sem2(input, output);
+var A, B, A: integer;
+
+begin
+A := B + C * 2
+end.
+$
+________________________________________________________ 
+SEMANTIC: duplicate variable name
+SEMANTIC: id not found in ST
+SEMANTIC: type mismatch in assign
+ SYNTAX: expected: end found: C (in match)
+ SYNTAX: expected: . found: C (in match)
+________________________________________________________ 
+________________________________________________________ 
+ THE SYMBOL TABLE
+________________________________________________________ 
+       NAME       ROLE       TYPE      SIZE      ADDR     
+________________________________________________________ 
+       sem2    program    program         8         0 
+          A        var    integer         4         0 
+          B        var    integer         4         4 
+________________________________________________________ 
+ STATIC STORAGE REQUIRED is 8 BYTES
+________________________________________________________ 
+testing mytests/sem3.pas
+
+________________________________________________________ 
+ THE PROGRAM TEXT
+________________________________________________________ 
+program sem3(input, output);
+var A, B, C: double;
+
+begin
+A := B + C * 2
+end.
+$
+________________________________________________________ 
+SEMANTIC: type not defined
+ SYNTAX: expected: ; found: double (in match)
+ SYNTAX: expected: : found: ; (in match)
+SEMANTIC: type not defined
+SEMANTIC: type mismatch in assign
+________________________________________________________ 
+________________________________________________________ 
+ THE SYMBOL TABLE
+________________________________________________________ 
+       NAME       ROLE       TYPE      SIZE      ADDR     
+________________________________________________________ 
+       sem3    program    program         0         0 
+          A        var      error         0         0 
+          B        var      error         0         0 
+          C        var      error         0         0 
+     double        var      error         0         0 
+________________________________________________________ 
+ STATIC STORAGE REQUIRED is 0 BYTES
+________________________________________________________ 
+testing mytests/sem4.pas
+
+________________________________________________________ 
+ THE PROGRAM TEXT
+________________________________________________________ 
+program sem4(input, output);
+var A, B, C: integer;
+    D, E, F: real;
+
+begin
+F := B + C * 2
+end.
+$
+________________________________________________________ 
+SEMANTIC: type mismatch in assign
+________________________________________________________ 
+________________________________________________________ 
+ THE SYMBOL TABLE
+________________________________________________________ 
+       NAME       ROLE       TYPE      SIZE      ADDR     
+________________________________________________________ 
+       sem4    program    program        36         0 
+          A        var    integer         4         0 
+          B        var    integer         4         4 
+          C        var    integer         4         8 
+          D        var       real         8        12 
+          E        var       real         8        20 
+          F        var       real         8        28 
+________________________________________________________ 
+ STATIC STORAGE REQUIRED is 36 BYTES
+________________________________________________________ 
+testing mytests/sem5.pas
+
+________________________________________________________ 
+ THE PROGRAM TEXT
+________________________________________________________ 
+program sem5(input, output);
+var A, B, C: integer;
+    D, E, F: real;
+
+begin
+A := D + E * 2
+end.
+$
+________________________________________________________ 
+SEMANTIC: type mismatch in assign
+________________________________________________________ 
+________________________________________________________ 
+ THE SYMBOL TABLE
+________________________________________________________ 
+       NAME       ROLE       TYPE      SIZE      ADDR     
+________________________________________________________ 
+       sem5    program    program        36         0 
+          A        var    integer         4         0 
+          B        var    integer         4         4 
+          C        var    integer         4         8 
+          D        var       real         8        12 
+          E        var       real         8        20 
+          F        var       real         8        28 
+________________________________________________________ 
+ STATIC STORAGE REQUIRED is 36 BYTES
+________________________________________________________ 
+testing mytests/testa.pas
+
+________________________________________________________ 
+ THE PROGRAM TEXT
+________________________________________________________ 
+
+$
+________________________________________________________ 
+ WARNING: input file is empty
+________________________________________________________ 
+________________________________________________________ 
+ THE SYMBOL TABLE
+________________________________________________________ 
+       NAME       ROLE       TYPE      SIZE      ADDR     
+________________________________________________________ 
+________________________________________________________ 
+ STATIC STORAGE REQUIRED is 0 BYTES
+________________________________________________________ 
+testing mytests/testb.pas
+
+________________________________________________________ 
+ THE PROGRAM TEXT
+________________________________________________________ 
+   testb(input, output);
+var A, B, C: integer;
+
+begin
+A := B + C * 2  
+end.
+$
+________________________________________________________ 
+SYNTAX: Did not find program token
+________________________________________________________ 
+________________________________________________________ 
+ THE SYMBOL TABLE
+________________________________________________________ 
+       NAME       ROLE       TYPE      SIZE      ADDR     
+________________________________________________________ 
+      testb    program    program        12         0 
+          A        var    integer         4         0 
+          B        var    integer         4         4 
+          C        var    integer         4         8 
+________________________________________________________ 
+ STATIC STORAGE REQUIRED is 12 BYTES
+________________________________________________________ 
+testing mytests/testc.pas
+
+________________________________________________________ 
+ THE PROGRAM TEXT
+________________________________________________________ 
+program (input, output);
+var A, B, C: integer;
+
+begin
+A := B + C * 2  
+end.
+$
+________________________________________________________ 
+ SYNTAX: expected: id found: ( (in match)
+________________________________________________________ 
+________________________________________________________ 
+ THE SYMBOL TABLE
+________________________________________________________ 
+       NAME       ROLE       TYPE      SIZE      ADDR     
+________________________________________________________ 
+        ???    program    program        12         0 
+          A        var    integer         4         0 
+          B        var    integer         4         4 
+          C        var    integer         4         8 
+________________________________________________________ 
+ STATIC STORAGE REQUIRED is 12 BYTES
+________________________________________________________ 
+testing mytests/testd.pas
+
+________________________________________________________ 
+ THE PROGRAM TEXT
+________________________________________________________ 
+program testd input, output);
+var A, B, C: integer;
+
+begin
+A := B + C * 2  
+end.
+$
+________________________________________________________ 
+ SYNTAX: expected: ( found: input (in match)
+________________________________________________________ 
+________________________________________________________ 
+ THE SYMBOL TABLE
+________________________________________________________ 
+       NAME       ROLE       TYPE      SIZE      ADDR     
+________________________________________________________ 
+      testd    program    program        12         0 
+          A        var    integer         4         0 
+          B        var    integer         4         4 
+          C        var    integer         4         8 
+________________________________________________________ 
+ STATIC STORAGE REQUIRED is 12 BYTES
+________________________________________________________ 
+testing mytests/teste.pas
+
+________________________________________________________ 
+ THE PROGRAM TEXT
+________________________________________________________ 
+program teste ( , output);
+var A, B, C: integer;
+
+begin
+A := B + C * 2  
+end.
+$
+________________________________________________________ 
+ SYNTAX: expected: input found: , (in match)
+________________________________________________________ 
+________________________________________________________ 
+ THE SYMBOL TABLE
+________________________________________________________ 
+       NAME       ROLE       TYPE      SIZE      ADDR     
+________________________________________________________ 
+      teste    program    program        12         0 
+          A        var    integer         4         0 
+          B        var    integer         4         4 
+          C        var    integer         4         8 
+________________________________________________________ 
+ STATIC STORAGE REQUIRED is 12 BYTES
+________________________________________________________ 
+testing mytests/testf.pas
+
+________________________________________________________ 
+ THE PROGRAM TEXT
+________________________________________________________ 
+program testf (input  output);
+var A, B, C: integer;
+
+begin
+A := B + C * 2  
+end.
+$
+________________________________________________________ 
+ SYNTAX: expected: , found: output (in match)
+________________________________________________________ 
+________________________________________________________ 
+ THE SYMBOL TABLE
+________________________________________________________ 
+       NAME       ROLE       TYPE      SIZE      ADDR     
+________________________________________________________ 
+      testf    program    program        12         0 
+          A        var    integer         4         0 
+          B        var    integer         4         4 
+          C        var    integer         4         8 
+________________________________________________________ 
+ STATIC STORAGE REQUIRED is 12 BYTES
+________________________________________________________ 
+testing mytests/testg.pas
+
+________________________________________________________ 
+ THE PROGRAM TEXT
+________________________________________________________ 
+program testg (input, );
+var A, B, C: integer;
+
+begin
+A := B + C * 2  
+end.
+$
+________________________________________________________ 
+ SYNTAX: expected: output found: ) (in match)
+________________________________________________________ 
+________________________________________________________ 
+ THE SYMBOL TABLE
+________________________________________________________ 
+       NAME       ROLE       TYPE      SIZE      ADDR     
+________________________________________________________ 
+      testg    program    program        12         0 
+          A        var    integer         4         0 
+          B        var    integer         4         4 
+          C        var    integer         4         8 
+________________________________________________________ 
+ STATIC STORAGE REQUIRED is 12 BYTES
+________________________________________________________ 
+testing mytests/testh.pas
+
+________________________________________________________ 
+ THE PROGRAM TEXT
+________________________________________________________ 
+program testh (input, output ;
+var A, B, C: integer;
+
+begin
+A := B + C * 2  
+end.
+$
+________________________________________________________ 
+ SYNTAX: expected: ) found: ; (in match)
+________________________________________________________ 
+________________________________________________________ 
+ THE SYMBOL TABLE
+________________________________________________________ 
+       NAME       ROLE       TYPE      SIZE      ADDR     
+________________________________________________________ 
+      testh    program    program        12         0 
+          A        var    integer         4         0 
+          B        var    integer         4         4 
+          C        var    integer         4         8 
+________________________________________________________ 
+ STATIC STORAGE REQUIRED is 12 BYTES
+________________________________________________________ 
+testing mytests/testi.pas
+
+________________________________________________________ 
+ THE PROGRAM TEXT
+________________________________________________________ 
+program testi (input, output) 
+var A, B, C: integer;
+
+begin
+A := B + C * 2  
+end.
+$
+________________________________________________________ 
+ SYNTAX: expected: ; found: var (in match)
+________________________________________________________ 
+________________________________________________________ 
+ THE SYMBOL TABLE
+________________________________________________________ 
+       NAME       ROLE       TYPE      SIZE      ADDR     
+________________________________________________________ 
+      testi    program    program        12         0 
+          A        var    integer         4         0 
+          B        var    integer         4         4 
+          C        var    integer         4         8 
+________________________________________________________ 
+ STATIC STORAGE REQUIRED is 12 BYTES
+________________________________________________________ 
+testing mytests/testj.pas
+
+________________________________________________________ 
+ THE PROGRAM TEXT
+________________________________________________________ 
+program testj (input, output);
+  A, B, C: integer;
+
+begin
+A := B + C * 2  
+end.
+$
+________________________________________________________ 
+*** NOTE: Did not find var, no variables declared. ***
+ SYNTAX: expected: begin found: A (in match)
+SEMANTIC: assign id not found in ST
+ SYNTAX: expected: := found: , (in match)
+SEMANTIC: *** UNEXPECTED SYMBOL ***
+ SYNTAX: expected: end found: , (in match)
+ SYNTAX: expected: . found: , (in match)
+________________________________________________________ 
+________________________________________________________ 
+ THE SYMBOL TABLE
+________________________________________________________ 
+       NAME       ROLE       TYPE      SIZE      ADDR     
+________________________________________________________ 
+      testj    program    program         0         0 
+________________________________________________________ 
+ STATIC STORAGE REQUIRED is 0 BYTES
+________________________________________________________ 
+testing mytests/testk.pas
+
+________________________________________________________ 
+ THE PROGRAM TEXT
+________________________________________________________ 
+program testk (input, output);
+var , B, C: integer;
+
+begin
+A := B + C * 2  
+end.
+$
+________________________________________________________ 
+SEMANTIC: assign id not found in ST
+SEMANTIC: type mismatch in assign
+________________________________________________________ 
+________________________________________________________ 
+ THE SYMBOL TABLE
+________________________________________________________ 
+       NAME       ROLE       TYPE      SIZE      ADDR     
+________________________________________________________ 
+      testk    program    program         8         0 
+          B        var    integer         4         0 
+          C        var    integer         4         4 
+________________________________________________________ 
+ STATIC STORAGE REQUIRED is 8 BYTES
+________________________________________________________ 
+testing mytests/testl.pas
+
+________________________________________________________ 
+ THE PROGRAM TEXT
+________________________________________________________ 
+program testl (input, output);
+var A  B, C: integer;
+
+begin
+A := B + C * 2  
+end.
+$
+________________________________________________________ 
+ SYNTAX: expected: : found: B (in match)
+SEMANTIC: type not defined
+ SYNTAX: expected: ; found: B (in match)
+SEMANTIC: type mismatch in assign
+________________________________________________________ 
+________________________________________________________ 
+ THE SYMBOL TABLE
+________________________________________________________ 
+       NAME       ROLE       TYPE      SIZE      ADDR     
+________________________________________________________ 
+      testl    program    program         8         0 
+          A        var      error         0         0 
+          B        var    integer         4         0 
+          C        var    integer         4         4 
+________________________________________________________ 
+ STATIC STORAGE REQUIRED is 8 BYTES
+________________________________________________________ 
+testing mytests/testm.pas
+
+________________________________________________________ 
+ THE PROGRAM TEXT
+________________________________________________________ 
+program testm (input, output);
+var A, B, C  integer;
+
+begin
+A := B + C * 2  
+end.
+$
+________________________________________________________ 
+ SYNTAX: expected: : found: integer (in match)
+________________________________________________________ 
+________________________________________________________ 
+ THE SYMBOL TABLE
+________________________________________________________ 
+       NAME       ROLE       TYPE      SIZE      ADDR     
+________________________________________________________ 
+      testm    program    program        12         0 
+          A        var    integer         4         0 
+          B        var    integer         4         4 
+          C        var    integer         4         8 
+________________________________________________________ 
+ STATIC STORAGE REQUIRED is 12 BYTES
+________________________________________________________ 
+testing mytests/testn.pas
+
+________________________________________________________ 
+ THE PROGRAM TEXT
+________________________________________________________ 
+program testn (input, output);
+var A, B, C: ;
+
+begin
+A := B + C * 2  
+end.
+$
+________________________________________________________ 
+SEMANTIC: type not defined
+SEMANTIC: type mismatch in assign
+________________________________________________________ 
+________________________________________________________ 
+ THE SYMBOL TABLE
+________________________________________________________ 
+       NAME       ROLE       TYPE      SIZE      ADDR     
+________________________________________________________ 
+      testn    program    program         0         0 
+          A        var      error         0         0 
+          B        var      error         0         0 
+          C        var      error         0         0 
+________________________________________________________ 
+ STATIC STORAGE REQUIRED is 0 BYTES
+________________________________________________________ 
+testing mytests/testo.pas
+
+________________________________________________________ 
+ THE PROGRAM TEXT
+________________________________________________________ 
+program testo (input, output);
+var A, B, C: integer
+
+begin
+A := B + C * 2  
+end.
+$
+________________________________________________________ 
+ SYNTAX: expected: ; found: begin (in match)
+________________________________________________________ 
+________________________________________________________ 
+ THE SYMBOL TABLE
+________________________________________________________ 
+       NAME       ROLE       TYPE      SIZE      ADDR     
+________________________________________________________ 
+      testo    program    program        12         0 
+          A        var    integer         4         0 
+          B        var    integer         4         4 
+          C        var    integer         4         8 
+________________________________________________________ 
+ STATIC STORAGE REQUIRED is 12 BYTES
+________________________________________________________ 
+testing mytests/testok1.pas
+
+________________________________________________________ 
+ THE PROGRAM TEXT
+________________________________________________________ 
+program testok1(input, output);  
+var A, B, C: integer;  
+
+begin
+A := B + C * 2  
+end.
+$
+________________________________________________________ 
+PARSE SUCCESSFUL! 
+________________________________________________________ 
+________________________________________________________ 
+ THE SYMBOL TABLE
+________________________________________________________ 
+       NAME       ROLE       TYPE      SIZE      ADDR     
+________________________________________________________ 
+    testok1    program    program        12         0 
+          A        var    integer         4         0 
+          B        var    integer         4         4 
+          C        var    integer         4         8 
+________________________________________________________ 
+ STATIC STORAGE REQUIRED is 12 BYTES
+________________________________________________________ 
+testing mytests/testok2.pas
+
+________________________________________________________ 
+ THE PROGRAM TEXT
+________________________________________________________ 
+program testok2(input, output);
+var A, B, C: integer;  
+    D, E, F: integer;
+    G, H, I: integer;
+
+begin
+A := B + C * 2;
+D := E + F * 2;
+G := H + I * 2
+end.
+$
+________________________________________________________ 
+PARSE SUCCESSFUL! 
+________________________________________________________ 
+________________________________________________________ 
+ THE SYMBOL TABLE
+________________________________________________________ 
+       NAME       ROLE       TYPE      SIZE      ADDR     
+________________________________________________________ 
+    testok2    program    program        36         0 
+          A        var    integer         4         0 
+          B        var    integer         4         4 
+          C        var    integer         4         8 
+          D        var    integer         4        12 
+          E        var    integer         4        16 
+          F        var    integer         4        20 
+          G        var    integer         4        24 
+          H        var    integer         4        28 
+          I        var    integer         4        32 
+________________________________________________________ 
+ STATIC STORAGE REQUIRED is 36 BYTES
+________________________________________________________ 
+testing mytests/testok3.pas
+
+________________________________________________________ 
+ THE PROGRAM TEXT
+________________________________________________________ 
+program testok3(input, output);
+var A, B, C: integer;  
+
+begin
+A := 2 + 6 * 8;
+B := 3 + 9 * 1;
+C := 4 + 1 * 1
+end.
+$
+________________________________________________________ 
+PARSE SUCCESSFUL! 
+________________________________________________________ 
+________________________________________________________ 
+ THE SYMBOL TABLE
+________________________________________________________ 
+       NAME       ROLE       TYPE      SIZE      ADDR     
+________________________________________________________ 
+    testok3    program    program        12         0 
+          A        var    integer         4         0 
+          B        var    integer         4         4 
+          C        var    integer         4         8 
+________________________________________________________ 
+ STATIC STORAGE REQUIRED is 12 BYTES
+________________________________________________________ 
+testing mytests/testok4.pas
+
+________________________________________________________ 
+ THE PROGRAM TEXT
+________________________________________________________ 
+program testok4(input, output);
+var A, B, C: integer;  
+    DD, EE, FF: integer;
+
+begin
+A := B + C * 2  
+end.
+$
+________________________________________________________ 
+PARSE SUCCESSFUL! 
+________________________________________________________ 
+________________________________________________________ 
+ THE SYMBOL TABLE
+________________________________________________________ 
+       NAME       ROLE       TYPE      SIZE      ADDR     
+________________________________________________________ 
+    testok4    program    program        24         0 
+          A        var    integer         4         0 
+          B        var    integer         4         4 
+          C        var    integer         4         8 
+         DD        var    integer         4        12 
+         EE        var    integer         4        16 
+         FF        var    integer         4        20 
+________________________________________________________ 
+ STATIC STORAGE REQUIRED is 24 BYTES
+________________________________________________________ 
+testing mytests/testok5.pas
+
+________________________________________________________ 
+ THE PROGRAM TEXT
+________________________________________________________ 
+program testok5(input, output);
+var x, y, z: integer;
+    A: integer;
+    B: integer;
+    C: integer;
+
+begin
+x := y + z * 2;
+A := B + C * 2  
+end.
+$
+________________________________________________________ 
+PARSE SUCCESSFUL! 
+________________________________________________________ 
+________________________________________________________ 
+ THE SYMBOL TABLE
+________________________________________________________ 
+       NAME       ROLE       TYPE      SIZE      ADDR     
+________________________________________________________ 
+    testok5    program    program        24         0 
+          x        var    integer         4         0 
+          y        var    integer         4         4 
+          z        var    integer         4         8 
+          A        var    integer         4        12 
+          B        var    integer         4        16 
+          C        var    integer         4        20 
+________________________________________________________ 
+ STATIC STORAGE REQUIRED is 24 BYTES
+________________________________________________________ 
+testing mytests/testok6.pas
+
+________________________________________________________ 
+ THE PROGRAM TEXT
+________________________________________________________ 
+program testok6(input, output);
+var id, number, assign: integer;
+
+begin
+id := (number + assign) * 2  
+end.
+$
+________________________________________________________ 
+PARSE SUCCESSFUL! 
+________________________________________________________ 
+________________________________________________________ 
+ THE SYMBOL TABLE
+________________________________________________________ 
+       NAME       ROLE       TYPE      SIZE      ADDR     
+________________________________________________________ 
+    testok6    program    program        12         0 
+         id        var    integer         4         0 
+     number        var    integer         4         4 
+     assign        var    integer         4         8 
+________________________________________________________ 
+ STATIC STORAGE REQUIRED is 12 BYTES
+________________________________________________________ 
+testing mytests/testok7.pas
+
+________________________________________________________ 
+ THE PROGRAM TEXT
+________________________________________________________ 
+program testok7(input, output);
+var
+    A: integer;
+    B: integer;
+    C: integer;
+
+begin
+A := B + C * 2
+end.
+$
+________________________________________________________ 
+PARSE SUCCESSFUL! 
+________________________________________________________ 
+________________________________________________________ 
+ THE SYMBOL TABLE
+________________________________________________________ 
+       NAME       ROLE       TYPE      SIZE      ADDR     
+________________________________________________________ 
+    testok7    program    program        12         0 
+          A        var    integer         4         0 
+          B        var    integer         4         4 
+          C        var    integer         4         8 
+________________________________________________________ 
+ STATIC STORAGE REQUIRED is 12 BYTES
+________________________________________________________ 
+testing mytests/testp.pas
+
+________________________________________________________ 
+ THE PROGRAM TEXT
+________________________________________________________ 
+program testp (input, output);
+var A, B, C: integer;
+
+
+A := B + C * 2  
+end.
+$
+________________________________________________________ 
+SEMANTIC: duplicate variable name
+ SYNTAX: expected: : found: := (in match)
+SEMANTIC: type not defined
+ SYNTAX: expected: ; found: := (in match)
+ SYNTAX: expected: begin found: := (in match)
+ SYNTAX: expected: id found: := (in match)
+SEMANTIC: type mismatch in assign
+________________________________________________________ 
+________________________________________________________ 
+ THE SYMBOL TABLE
+________________________________________________________ 
+       NAME       ROLE       TYPE      SIZE      ADDR     
+________________________________________________________ 
+      testp    program    program        12         0 
+          A        var    integer         4         0 
+          B        var    integer         4         4 
+          C        var    integer         4         8 
+________________________________________________________ 
+ STATIC STORAGE REQUIRED is 12 BYTES
+________________________________________________________ 
+testing mytests/testq.pas
+
+________________________________________________________ 
+ THE PROGRAM TEXT
+________________________________________________________ 
+program testq (input, output);
+var A, B, C: integer;
+
+begin
+ := B + C * 2  
+end.
+$
+________________________________________________________ 
+ SYNTAX: expected: id found: := (in match)
+SEMANTIC: type mismatch in assign
+________________________________________________________ 
+________________________________________________________ 
+ THE SYMBOL TABLE
+________________________________________________________ 
+       NAME       ROLE       TYPE      SIZE      ADDR     
+________________________________________________________ 
+      testq    program    program        12         0 
+          A        var    integer         4         0 
+          B        var    integer         4         4 
+          C        var    integer         4         8 
+________________________________________________________ 
+ STATIC STORAGE REQUIRED is 12 BYTES
+________________________________________________________ 
+testing mytests/testr.pas
+
+________________________________________________________ 
+ THE PROGRAM TEXT
+________________________________________________________ 
+program testr (input, output);
+var A, B, C: integer;
+
+begin
+ A = B + C * 2  
+end.
+$
+________________________________________________________ 
+ SYNTAX: expected: := found: = (in match)
+SEMANTIC: *** UNEXPECTED SYMBOL ***
+SEMANTIC: type mismatch in assign
+ SYNTAX: expected: end found: = (in match)
+ SYNTAX: expected: . found: = (in match)
+________________________________________________________ 
+________________________________________________________ 
+ THE SYMBOL TABLE
+________________________________________________________ 
+       NAME       ROLE       TYPE      SIZE      ADDR     
+________________________________________________________ 
+      testr    program    program        12         0 
+          A        var    integer         4         0 
+          B        var    integer         4         4 
+          C        var    integer         4         8 
+________________________________________________________ 
+ STATIC STORAGE REQUIRED is 12 BYTES
+________________________________________________________ 
+testing mytests/tests.pas
+
+________________________________________________________ 
+ THE PROGRAM TEXT
+________________________________________________________ 
+program tests (input, output);
+var A, B, C: integer;
+
+begin
+ A : B + C * 2  
+end.
+$
+________________________________________________________ 
+ SYNTAX: expected: := found: : (in match)
+SEMANTIC: *** UNEXPECTED SYMBOL ***
+SEMANTIC: type mismatch in assign
+ SYNTAX: expected: end found: : (in match)
+ SYNTAX: expected: . found: : (in match)
+________________________________________________________ 
+________________________________________________________ 
+ THE SYMBOL TABLE
+________________________________________________________ 
+       NAME       ROLE       TYPE      SIZE      ADDR     
+________________________________________________________ 
+      tests    program    program        12         0 
+          A        var    integer         4         0 
+          B        var    integer         4         4 
+          C        var    integer         4         8 
+________________________________________________________ 
+ STATIC STORAGE REQUIRED is 12 BYTES
+________________________________________________________ 
+testing mytests/testt.pas
+
+________________________________________________________ 
+ THE PROGRAM TEXT
+________________________________________________________ 
+program testt (input, output);
+var A, B, C: integer;
+
+begin
+ A  B + C * 2  
+end.
+$
+________________________________________________________ 
+ SYNTAX: expected: := found: B (in match)
+________________________________________________________ 
+________________________________________________________ 
+ THE SYMBOL TABLE
+________________________________________________________ 
+       NAME       ROLE       TYPE      SIZE      ADDR     
+________________________________________________________ 
+      testt    program    program        12         0 
+          A        var    integer         4         0 
+          B        var    integer         4         4 
+          C        var    integer         4         8 
+________________________________________________________ 
+ STATIC STORAGE REQUIRED is 12 BYTES
+________________________________________________________ 
+testing mytests/testu.pas
+
+________________________________________________________ 
+ THE PROGRAM TEXT
+________________________________________________________ 
+program testu (input, output);
+var A, B, C: integer;
+
+begin
+ A := + C * 2  
+end.
+$
+________________________________________________________ 
+SEMANTIC: *** UNEXPECTED SYMBOL ***
+________________________________________________________ 
+________________________________________________________ 
+ THE SYMBOL TABLE
+________________________________________________________ 
+       NAME       ROLE       TYPE      SIZE      ADDR     
+________________________________________________________ 
+      testu    program    program        12         0 
+          A        var    integer         4         0 
+          B        var    integer         4         4 
+          C        var    integer         4         8 
+________________________________________________________ 
+ STATIC STORAGE REQUIRED is 12 BYTES
+________________________________________________________ 
+testing mytests/testv.pas
+
+________________________________________________________ 
+ THE PROGRAM TEXT
+________________________________________________________ 
+program testv (input, output);
+var A, B, C: integer;
+
+begin
+ A := B  C * 2  
+end.
+$
+________________________________________________________ 
+ SYNTAX: expected: end found: C (in match)
+ SYNTAX: expected: . found: C (in match)
+________________________________________________________ 
+________________________________________________________ 
+ THE SYMBOL TABLE
+________________________________________________________ 
+       NAME       ROLE       TYPE      SIZE      ADDR     
+________________________________________________________ 
+      testv    program    program        12         0 
+          A        var    integer         4         0 
+          B        var    integer         4         4 
+          C        var    integer         4         8 
+________________________________________________________ 
+ STATIC STORAGE REQUIRED is 12 BYTES
+________________________________________________________ 
+testing mytests/testw.pas
+
+________________________________________________________ 
+ THE PROGRAM TEXT
+________________________________________________________ 
+program testw (input, output);
+var A, B, C: integer;
+
+begin
+ A := B + C - 2  
+end.
+$
+________________________________________________________ 
+ SYNTAX: expected: end found: - (in match)
+ SYNTAX: expected: . found: - (in match)
+________________________________________________________ 
+________________________________________________________ 
+ THE SYMBOL TABLE
+________________________________________________________ 
+       NAME       ROLE       TYPE      SIZE      ADDR     
+________________________________________________________ 
+      testw    program    program        12         0 
+          A        var    integer         4         0 
+          B        var    integer         4         4 
+          C        var    integer         4         8 
+________________________________________________________ 
+ STATIC STORAGE REQUIRED is 12 BYTES
+________________________________________________________ 
+testing mytests/testx.pas
+
+________________________________________________________ 
+ THE PROGRAM TEXT
+________________________________________________________ 
+program testx (input, output);
+var A, B, C: integer;
+
+begin
+ A := B + C * 2 ;  
+end.
+$
+________________________________________________________ 
+ SYNTAX: expected: id found: end (in match)
+ SYNTAX: expected: := found: end (in match)
+SEMANTIC: *** UNEXPECTED SYMBOL ***
+________________________________________________________ 
+________________________________________________________ 
+ THE SYMBOL TABLE
+________________________________________________________ 
+       NAME       ROLE       TYPE      SIZE      ADDR     
+________________________________________________________ 
+      testx    program    program        12         0 
+          A        var    integer         4         0 
+          B        var    integer         4         4 
+          C        var    integer         4         8 
+________________________________________________________ 
+ STATIC STORAGE REQUIRED is 12 BYTES
+________________________________________________________ 
+testing mytests/testy.pas
+
+________________________________________________________ 
+ THE PROGRAM TEXT
+________________________________________________________ 
+program testy (input, output);
+var A, B, C: integer;
+
+begin
+ A := B + C * 2
+.
+$
+________________________________________________________ 
+ SYNTAX: expected: end found: . (in match)
+________________________________________________________ 
+________________________________________________________ 
+ THE SYMBOL TABLE
+________________________________________________________ 
+       NAME       ROLE       TYPE      SIZE      ADDR     
+________________________________________________________ 
+      testy    program    program        12         0 
+          A        var    integer         4         0 
+          B        var    integer         4         4 
+          C        var    integer         4         8 
+________________________________________________________ 
+ STATIC STORAGE REQUIRED is 12 BYTES
+________________________________________________________ 
+testing mytests/testz.pas
+
+________________________________________________________ 
+ THE PROGRAM TEXT
+________________________________________________________ 
+program testz (input, output);
+var A, B, C: integer;
+
+begin
+ A := B + C * 2
+end 
+$
+________________________________________________________ 
+ SYNTAX: expected: . found: $ (in match)
+________________________________________________________ 
+________________________________________________________ 
+ THE SYMBOL TABLE
+________________________________________________________ 
+       NAME       ROLE       TYPE      SIZE      ADDR     
+________________________________________________________ 
+      testz    program    program        12         0 
+          A        var    integer         4         0 
+          B        var    integer         4         4 
+          C        var    integer         4         8 
+________________________________________________________ 
+ STATIC STORAGE REQUIRED is 12 BYTES
+________________________________________________________ 

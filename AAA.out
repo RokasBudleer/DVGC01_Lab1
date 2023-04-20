@@ -1,0 +1,32 @@
+
+________________________________________________________ 
+ THE PROGRAM TEXT
+________________________________________________________ 
+program testok6(input, output);
+var id, number, assign: integer;
+
+begin
+id := (number + assign) * 2  
+end.
+$
+________________________________________________________ 
+ *** Unexpected Token: expected: : found: number (in match)
+ERROR: type not defined
+ *** Unexpected Token: expected: ; found: number (in match)
+ *** Unexpected Token: expected: begin found: number (in match)
+ *** Unexpected Token: expected: id found: number (in match)
+ *** Unexpected Token: expected: := found: number (in match)
+ERROR: type mismatch in assign
+ *** Unexpected Token: expected: end found: , (in match)
+ *** Unexpected Token: expected: . found: , (in match)
+________________________________________________________ 
+________________________________________________________ 
+ THE SYMBOL TABLE
+________________________________________________________ 
+       NAME       ROLE       TYPE      SIZE      ADDR     
+________________________________________________________ 
+    testok6    program    program         0         0 
+         id        var      undef         0         0 
+________________________________________________________ 
+ STATIC STORAGE REQUIRED is 0 BYTES
+________________________________________________________ 
