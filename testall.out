@@ -1,4 +1,4 @@
-testing mytests/fun1.pas
+testing TestSuite/fun1.pas
 
 ________________________________________________________ 
  THE PROGRAM TEXT
@@ -11,11 +11,9 @@ A := B + C * 2
 end.
 $
 ________________________________________________________ 
-SEMANTIC: duplicate variable name
-SEMANTIC: id not found in ST
-SEMANTIC: type mismatch in assign
- SYNTAX: expected: end found: C (in match)
- SYNTAX: expected: . found: C (in match)
+SEMANTIC: ID already declared: A
+SEMANTIC: ID NOT declared: C
+SEMANTIC: Assign types: integer := undef
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -28,7 +26,7 @@ ________________________________________________________
 ________________________________________________________ 
  STATIC STORAGE REQUIRED is 8 BYTES
 ________________________________________________________ 
-testing mytests/fun2.pas
+testing TestSuite/fun2.pas
 
 ________________________________________________________ 
  THE PROGRAM TEXT
@@ -41,11 +39,12 @@ begin
 end.
 $
 ________________________________________________________ 
- SYNTAX: expected: id found: 3 (in match)
- SYNTAX: expected: := found: 3 (in match)
-SEMANTIC: type mismatch in assign
- SYNTAX: expected: end found: A (in match)
- SYNTAX: expected: . found: A (in match)
+SYNTAX:   ID expected found 3
+SYNTAX:   Symbol expected := found 3 
+SEMANTIC: Assign types: undef := integer
+SYNTAX:   Symbol expected end found A 
+SYNTAX:   Symbol expected . found A 
+SYNTAX:   Extra symbols found after end of parse!
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -59,7 +58,7 @@ ________________________________________________________
 ________________________________________________________ 
  STATIC STORAGE REQUIRED is 12 BYTES
 ________________________________________________________ 
-testing mytests/fun3.pas
+testing TestSuite/fun3.pas
 
 ________________________________________________________ 
  THE PROGRAM TEXT
@@ -73,11 +72,12 @@ A :
 end.
 $
 ________________________________________________________ 
- SYNTAX: expected: := found: : (in match)
-SEMANTIC: *** UNEXPECTED SYMBOL ***
-SEMANTIC: type mismatch in assign
- SYNTAX: expected: end found: : (in match)
- SYNTAX: expected: . found: : (in match)
+SYNTAX:   Symbol expected := found : 
+SYNTAX:   Operand Expected 
+SEMANTIC: Assign types: integer := undef
+SYNTAX:   Symbol expected end found : 
+SYNTAX:   Symbol expected . found : 
+SYNTAX:   Extra symbols found after end of parse!
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -91,7 +91,7 @@ ________________________________________________________
 ________________________________________________________ 
  STATIC STORAGE REQUIRED is 12 BYTES
 ________________________________________________________ 
-testing mytests/fun4.pas
+testing TestSuite/fun4.pas
 
 ________________________________________________________ 
  THE PROGRAM TEXT
@@ -122,7 +122,7 @@ ________________________________________________________
 ________________________________________________________ 
  STATIC STORAGE REQUIRED is 24 BYTES
 ________________________________________________________ 
-testing mytests/fun5.pas
+testing TestSuite/fun5.pas
 
 ________________________________________________________ 
  THE PROGRAM TEXT
@@ -139,7 +139,7 @@ OOOOPS!!!
 
 $
 ________________________________________________________ 
-PARSE SUCCESSFUL! 
+SYNTAX:   Extra symbols found after end of parse!
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -153,7 +153,7 @@ ________________________________________________________
 ________________________________________________________ 
  STATIC STORAGE REQUIRED is 12 BYTES
 ________________________________________________________ 
-testing mytests/sem1.pas
+testing TestSuite/sem1.pas
 
 ________________________________________________________ 
  THE PROGRAM TEXT
@@ -166,10 +166,8 @@ A := D + C * 2
 end.
 $
 ________________________________________________________ 
-SEMANTIC: id not found in ST
-SEMANTIC: type mismatch in assign
- SYNTAX: expected: end found: D (in match)
- SYNTAX: expected: . found: D (in match)
+SEMANTIC: ID NOT declared: D
+PARSE SUCCESSFUL! 
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -183,7 +181,7 @@ ________________________________________________________
 ________________________________________________________ 
  STATIC STORAGE REQUIRED is 12 BYTES
 ________________________________________________________ 
-testing mytests/sem2.pas
+testing TestSuite/sem2.pas
 
 ________________________________________________________ 
  THE PROGRAM TEXT
@@ -196,11 +194,9 @@ A := B + C * 2
 end.
 $
 ________________________________________________________ 
-SEMANTIC: duplicate variable name
-SEMANTIC: id not found in ST
-SEMANTIC: type mismatch in assign
- SYNTAX: expected: end found: C (in match)
- SYNTAX: expected: . found: C (in match)
+SEMANTIC: ID already declared: A
+SEMANTIC: ID NOT declared: C
+SEMANTIC: Assign types: integer := undef
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -213,7 +209,7 @@ ________________________________________________________
 ________________________________________________________ 
  STATIC STORAGE REQUIRED is 8 BYTES
 ________________________________________________________ 
-testing mytests/sem3.pas
+testing TestSuite/sem3.pas
 
 ________________________________________________________ 
  THE PROGRAM TEXT
@@ -226,11 +222,11 @@ A := B + C * 2
 end.
 $
 ________________________________________________________ 
-SEMANTIC: type not defined
- SYNTAX: expected: ; found: double (in match)
- SYNTAX: expected: : found: ; (in match)
-SEMANTIC: type not defined
-SEMANTIC: type mismatch in assign
+SYNTAX:   Type name expected found double
+SYNTAX:   Symbol expected ; found double 
+SYNTAX:   Symbol expected : found ; 
+SYNTAX:   Type name expected found ;
+SEMANTIC: Assign types: error := undef
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -245,7 +241,7 @@ ________________________________________________________
 ________________________________________________________ 
  STATIC STORAGE REQUIRED is 0 BYTES
 ________________________________________________________ 
-testing mytests/sem4.pas
+testing TestSuite/sem4.pas
 
 ________________________________________________________ 
  THE PROGRAM TEXT
@@ -259,7 +255,7 @@ F := B + C * 2
 end.
 $
 ________________________________________________________ 
-SEMANTIC: type mismatch in assign
+SEMANTIC: Assign types: real := integer
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -276,7 +272,7 @@ ________________________________________________________
 ________________________________________________________ 
  STATIC STORAGE REQUIRED is 36 BYTES
 ________________________________________________________ 
-testing mytests/sem5.pas
+testing TestSuite/sem5.pas
 
 ________________________________________________________ 
  THE PROGRAM TEXT
@@ -290,7 +286,7 @@ A := D + E * 2
 end.
 $
 ________________________________________________________ 
-SEMANTIC: type mismatch in assign
+SEMANTIC: Assign types: integer := real
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -307,7 +303,7 @@ ________________________________________________________
 ________________________________________________________ 
  STATIC STORAGE REQUIRED is 36 BYTES
 ________________________________________________________ 
-testing mytests/testa.pas
+testing TestSuite/testa.pas
 
 ________________________________________________________ 
  THE PROGRAM TEXT
@@ -325,7 +321,7 @@ ________________________________________________________
 ________________________________________________________ 
  STATIC STORAGE REQUIRED is 0 BYTES
 ________________________________________________________ 
-testing mytests/testb.pas
+testing TestSuite/testb.pas
 
 ________________________________________________________ 
  THE PROGRAM TEXT
@@ -338,7 +334,7 @@ A := B + C * 2
 end.
 $
 ________________________________________________________ 
-SYNTAX: Did not find program token
+PARSE SUCCESSFUL! 
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -352,7 +348,7 @@ ________________________________________________________
 ________________________________________________________ 
  STATIC STORAGE REQUIRED is 12 BYTES
 ________________________________________________________ 
-testing mytests/testc.pas
+testing TestSuite/testc.pas
 
 ________________________________________________________ 
  THE PROGRAM TEXT
@@ -365,7 +361,7 @@ A := B + C * 2
 end.
 $
 ________________________________________________________ 
- SYNTAX: expected: id found: ( (in match)
+SYNTAX:   ID expected found (
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -379,7 +375,7 @@ ________________________________________________________
 ________________________________________________________ 
  STATIC STORAGE REQUIRED is 12 BYTES
 ________________________________________________________ 
-testing mytests/testd.pas
+testing TestSuite/testd.pas
 
 ________________________________________________________ 
  THE PROGRAM TEXT
@@ -392,7 +388,7 @@ A := B + C * 2
 end.
 $
 ________________________________________________________ 
- SYNTAX: expected: ( found: input (in match)
+SYNTAX:   Symbol expected ( found input 
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -406,7 +402,7 @@ ________________________________________________________
 ________________________________________________________ 
  STATIC STORAGE REQUIRED is 12 BYTES
 ________________________________________________________ 
-testing mytests/teste.pas
+testing TestSuite/teste.pas
 
 ________________________________________________________ 
  THE PROGRAM TEXT
@@ -419,7 +415,7 @@ A := B + C * 2
 end.
 $
 ________________________________________________________ 
- SYNTAX: expected: input found: , (in match)
+SYNTAX:   Symbol expected input found , 
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -433,7 +429,7 @@ ________________________________________________________
 ________________________________________________________ 
  STATIC STORAGE REQUIRED is 12 BYTES
 ________________________________________________________ 
-testing mytests/testf.pas
+testing TestSuite/testf.pas
 
 ________________________________________________________ 
  THE PROGRAM TEXT
@@ -446,7 +442,7 @@ A := B + C * 2
 end.
 $
 ________________________________________________________ 
- SYNTAX: expected: , found: output (in match)
+SYNTAX:   Symbol expected , found output 
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -460,7 +456,7 @@ ________________________________________________________
 ________________________________________________________ 
  STATIC STORAGE REQUIRED is 12 BYTES
 ________________________________________________________ 
-testing mytests/testg.pas
+testing TestSuite/testg.pas
 
 ________________________________________________________ 
  THE PROGRAM TEXT
@@ -473,7 +469,7 @@ A := B + C * 2
 end.
 $
 ________________________________________________________ 
- SYNTAX: expected: output found: ) (in match)
+SYNTAX:   Symbol expected output found ) 
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -487,7 +483,7 @@ ________________________________________________________
 ________________________________________________________ 
  STATIC STORAGE REQUIRED is 12 BYTES
 ________________________________________________________ 
-testing mytests/testh.pas
+testing TestSuite/testh.pas
 
 ________________________________________________________ 
  THE PROGRAM TEXT
@@ -500,7 +496,7 @@ A := B + C * 2
 end.
 $
 ________________________________________________________ 
- SYNTAX: expected: ) found: ; (in match)
+SYNTAX:   Symbol expected ) found ; 
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -514,7 +510,7 @@ ________________________________________________________
 ________________________________________________________ 
  STATIC STORAGE REQUIRED is 12 BYTES
 ________________________________________________________ 
-testing mytests/testi.pas
+testing TestSuite/testi.pas
 
 ________________________________________________________ 
  THE PROGRAM TEXT
@@ -527,7 +523,7 @@ A := B + C * 2
 end.
 $
 ________________________________________________________ 
- SYNTAX: expected: ; found: var (in match)
+SYNTAX:   Symbol expected ; found var 
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -541,7 +537,7 @@ ________________________________________________________
 ________________________________________________________ 
  STATIC STORAGE REQUIRED is 12 BYTES
 ________________________________________________________ 
-testing mytests/testj.pas
+testing TestSuite/testj.pas
 
 ________________________________________________________ 
  THE PROGRAM TEXT
@@ -554,24 +550,21 @@ A := B + C * 2
 end.
 $
 ________________________________________________________ 
-*** NOTE: Did not find var, no variables declared. ***
- SYNTAX: expected: begin found: A (in match)
-SEMANTIC: assign id not found in ST
- SYNTAX: expected: := found: , (in match)
-SEMANTIC: *** UNEXPECTED SYMBOL ***
- SYNTAX: expected: end found: , (in match)
- SYNTAX: expected: . found: , (in match)
+SYNTAX:   Symbol expected var found A 
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
 ________________________________________________________ 
        NAME       ROLE       TYPE      SIZE      ADDR     
 ________________________________________________________ 
-      testj    program    program         0         0 
+      testj    program    program        12         0 
+          A        var    integer         4         0 
+          B        var    integer         4         4 
+          C        var    integer         4         8 
 ________________________________________________________ 
- STATIC STORAGE REQUIRED is 0 BYTES
+ STATIC STORAGE REQUIRED is 12 BYTES
 ________________________________________________________ 
-testing mytests/testk.pas
+testing TestSuite/testk.pas
 
 ________________________________________________________ 
  THE PROGRAM TEXT
@@ -584,8 +577,7 @@ A := B + C * 2
 end.
 $
 ________________________________________________________ 
-SEMANTIC: assign id not found in ST
-SEMANTIC: type mismatch in assign
+SEMANTIC: Assign types: undef := integer
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -598,7 +590,7 @@ ________________________________________________________
 ________________________________________________________ 
  STATIC STORAGE REQUIRED is 8 BYTES
 ________________________________________________________ 
-testing mytests/testl.pas
+testing TestSuite/testl.pas
 
 ________________________________________________________ 
  THE PROGRAM TEXT
@@ -611,10 +603,10 @@ A := B + C * 2
 end.
 $
 ________________________________________________________ 
- SYNTAX: expected: : found: B (in match)
-SEMANTIC: type not defined
- SYNTAX: expected: ; found: B (in match)
-SEMANTIC: type mismatch in assign
+SYNTAX:   Symbol expected : found B 
+SYNTAX:   Type name expected found B
+SYNTAX:   Symbol expected ; found B 
+SEMANTIC: Assign types: error := integer
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -628,7 +620,7 @@ ________________________________________________________
 ________________________________________________________ 
  STATIC STORAGE REQUIRED is 8 BYTES
 ________________________________________________________ 
-testing mytests/testm.pas
+testing TestSuite/testm.pas
 
 ________________________________________________________ 
  THE PROGRAM TEXT
@@ -641,7 +633,7 @@ A := B + C * 2
 end.
 $
 ________________________________________________________ 
- SYNTAX: expected: : found: integer (in match)
+SYNTAX:   Symbol expected : found integer 
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -655,7 +647,7 @@ ________________________________________________________
 ________________________________________________________ 
  STATIC STORAGE REQUIRED is 12 BYTES
 ________________________________________________________ 
-testing mytests/testn.pas
+testing TestSuite/testn.pas
 
 ________________________________________________________ 
  THE PROGRAM TEXT
@@ -668,8 +660,8 @@ A := B + C * 2
 end.
 $
 ________________________________________________________ 
-SEMANTIC: type not defined
-SEMANTIC: type mismatch in assign
+SYNTAX:   Type name expected found ;
+SEMANTIC: Assign types: error := undef
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -683,7 +675,7 @@ ________________________________________________________
 ________________________________________________________ 
  STATIC STORAGE REQUIRED is 0 BYTES
 ________________________________________________________ 
-testing mytests/testo.pas
+testing TestSuite/testo.pas
 
 ________________________________________________________ 
  THE PROGRAM TEXT
@@ -696,7 +688,7 @@ A := B + C * 2
 end.
 $
 ________________________________________________________ 
- SYNTAX: expected: ; found: begin (in match)
+SYNTAX:   Symbol expected ; found begin 
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -710,7 +702,7 @@ ________________________________________________________
 ________________________________________________________ 
  STATIC STORAGE REQUIRED is 12 BYTES
 ________________________________________________________ 
-testing mytests/testok1.pas
+testing TestSuite/testok1.pas
 
 ________________________________________________________ 
  THE PROGRAM TEXT
@@ -737,7 +729,7 @@ ________________________________________________________
 ________________________________________________________ 
  STATIC STORAGE REQUIRED is 12 BYTES
 ________________________________________________________ 
-testing mytests/testok2.pas
+testing TestSuite/testok2.pas
 
 ________________________________________________________ 
  THE PROGRAM TEXT
@@ -774,7 +766,7 @@ ________________________________________________________
 ________________________________________________________ 
  STATIC STORAGE REQUIRED is 36 BYTES
 ________________________________________________________ 
-testing mytests/testok3.pas
+testing TestSuite/testok3.pas
 
 ________________________________________________________ 
  THE PROGRAM TEXT
@@ -803,7 +795,7 @@ ________________________________________________________
 ________________________________________________________ 
  STATIC STORAGE REQUIRED is 12 BYTES
 ________________________________________________________ 
-testing mytests/testok4.pas
+testing TestSuite/testok4.pas
 
 ________________________________________________________ 
  THE PROGRAM TEXT
@@ -834,7 +826,7 @@ ________________________________________________________
 ________________________________________________________ 
  STATIC STORAGE REQUIRED is 24 BYTES
 ________________________________________________________ 
-testing mytests/testok5.pas
+testing TestSuite/testok5.pas
 
 ________________________________________________________ 
  THE PROGRAM TEXT
@@ -868,7 +860,7 @@ ________________________________________________________
 ________________________________________________________ 
  STATIC STORAGE REQUIRED is 24 BYTES
 ________________________________________________________ 
-testing mytests/testok6.pas
+testing TestSuite/testok6.pas
 
 ________________________________________________________ 
  THE PROGRAM TEXT
@@ -895,7 +887,7 @@ ________________________________________________________
 ________________________________________________________ 
  STATIC STORAGE REQUIRED is 12 BYTES
 ________________________________________________________ 
-testing mytests/testok7.pas
+testing TestSuite/testok7.pas
 
 ________________________________________________________ 
  THE PROGRAM TEXT
@@ -925,7 +917,7 @@ ________________________________________________________
 ________________________________________________________ 
  STATIC STORAGE REQUIRED is 12 BYTES
 ________________________________________________________ 
-testing mytests/testp.pas
+testing TestSuite/testp.pas
 
 ________________________________________________________ 
  THE PROGRAM TEXT
@@ -938,13 +930,13 @@ A := B + C * 2
 end.
 $
 ________________________________________________________ 
-SEMANTIC: duplicate variable name
- SYNTAX: expected: : found: := (in match)
-SEMANTIC: type not defined
- SYNTAX: expected: ; found: := (in match)
- SYNTAX: expected: begin found: := (in match)
- SYNTAX: expected: id found: := (in match)
-SEMANTIC: type mismatch in assign
+SEMANTIC: ID already declared: A
+SYNTAX:   Symbol expected : found := 
+SYNTAX:   Type name expected found :=
+SYNTAX:   Symbol expected ; found := 
+SYNTAX:   Symbol expected begin found := 
+SYNTAX:   ID expected found :=
+SEMANTIC: Assign types: undef := integer
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -958,7 +950,7 @@ ________________________________________________________
 ________________________________________________________ 
  STATIC STORAGE REQUIRED is 12 BYTES
 ________________________________________________________ 
-testing mytests/testq.pas
+testing TestSuite/testq.pas
 
 ________________________________________________________ 
  THE PROGRAM TEXT
@@ -971,8 +963,8 @@ begin
 end.
 $
 ________________________________________________________ 
- SYNTAX: expected: id found: := (in match)
-SEMANTIC: type mismatch in assign
+SYNTAX:   ID expected found :=
+SEMANTIC: Assign types: undef := integer
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -986,7 +978,7 @@ ________________________________________________________
 ________________________________________________________ 
  STATIC STORAGE REQUIRED is 12 BYTES
 ________________________________________________________ 
-testing mytests/testr.pas
+testing TestSuite/testr.pas
 
 ________________________________________________________ 
  THE PROGRAM TEXT
@@ -999,11 +991,12 @@ begin
 end.
 $
 ________________________________________________________ 
- SYNTAX: expected: := found: = (in match)
-SEMANTIC: *** UNEXPECTED SYMBOL ***
-SEMANTIC: type mismatch in assign
- SYNTAX: expected: end found: = (in match)
- SYNTAX: expected: . found: = (in match)
+SYNTAX:   Symbol expected := found = 
+SYNTAX:   Operand Expected 
+SEMANTIC: Assign types: integer := undef
+SYNTAX:   Symbol expected end found = 
+SYNTAX:   Symbol expected . found = 
+SYNTAX:   Extra symbols found after end of parse!
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -1017,7 +1010,7 @@ ________________________________________________________
 ________________________________________________________ 
  STATIC STORAGE REQUIRED is 12 BYTES
 ________________________________________________________ 
-testing mytests/tests.pas
+testing TestSuite/tests.pas
 
 ________________________________________________________ 
  THE PROGRAM TEXT
@@ -1030,11 +1023,12 @@ begin
 end.
 $
 ________________________________________________________ 
- SYNTAX: expected: := found: : (in match)
-SEMANTIC: *** UNEXPECTED SYMBOL ***
-SEMANTIC: type mismatch in assign
- SYNTAX: expected: end found: : (in match)
- SYNTAX: expected: . found: : (in match)
+SYNTAX:   Symbol expected := found : 
+SYNTAX:   Operand Expected 
+SEMANTIC: Assign types: integer := undef
+SYNTAX:   Symbol expected end found : 
+SYNTAX:   Symbol expected . found : 
+SYNTAX:   Extra symbols found after end of parse!
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -1048,7 +1042,7 @@ ________________________________________________________
 ________________________________________________________ 
  STATIC STORAGE REQUIRED is 12 BYTES
 ________________________________________________________ 
-testing mytests/testt.pas
+testing TestSuite/testt.pas
 
 ________________________________________________________ 
  THE PROGRAM TEXT
@@ -1061,7 +1055,7 @@ begin
 end.
 $
 ________________________________________________________ 
- SYNTAX: expected: := found: B (in match)
+SYNTAX:   Symbol expected := found B 
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -1075,7 +1069,7 @@ ________________________________________________________
 ________________________________________________________ 
  STATIC STORAGE REQUIRED is 12 BYTES
 ________________________________________________________ 
-testing mytests/testu.pas
+testing TestSuite/testu.pas
 
 ________________________________________________________ 
  THE PROGRAM TEXT
@@ -1088,7 +1082,8 @@ begin
 end.
 $
 ________________________________________________________ 
-SEMANTIC: *** UNEXPECTED SYMBOL ***
+SYNTAX:   Operand Expected 
+PARSE SUCCESSFUL! 
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -1102,7 +1097,7 @@ ________________________________________________________
 ________________________________________________________ 
  STATIC STORAGE REQUIRED is 12 BYTES
 ________________________________________________________ 
-testing mytests/testv.pas
+testing TestSuite/testv.pas
 
 ________________________________________________________ 
  THE PROGRAM TEXT
@@ -1115,8 +1110,9 @@ begin
 end.
 $
 ________________________________________________________ 
- SYNTAX: expected: end found: C (in match)
- SYNTAX: expected: . found: C (in match)
+SYNTAX:   Symbol expected end found C 
+SYNTAX:   Symbol expected . found C 
+SYNTAX:   Extra symbols found after end of parse!
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -1130,7 +1126,7 @@ ________________________________________________________
 ________________________________________________________ 
  STATIC STORAGE REQUIRED is 12 BYTES
 ________________________________________________________ 
-testing mytests/testw.pas
+testing TestSuite/testw.pas
 
 ________________________________________________________ 
  THE PROGRAM TEXT
@@ -1143,8 +1139,9 @@ begin
 end.
 $
 ________________________________________________________ 
- SYNTAX: expected: end found: - (in match)
- SYNTAX: expected: . found: - (in match)
+SYNTAX:   Symbol expected end found - 
+SYNTAX:   Symbol expected . found - 
+SYNTAX:   Extra symbols found after end of parse!
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -1158,7 +1155,7 @@ ________________________________________________________
 ________________________________________________________ 
  STATIC STORAGE REQUIRED is 12 BYTES
 ________________________________________________________ 
-testing mytests/testx.pas
+testing TestSuite/testx.pas
 
 ________________________________________________________ 
  THE PROGRAM TEXT
@@ -1171,9 +1168,9 @@ begin
 end.
 $
 ________________________________________________________ 
- SYNTAX: expected: id found: end (in match)
- SYNTAX: expected: := found: end (in match)
-SEMANTIC: *** UNEXPECTED SYMBOL ***
+SYNTAX:   ID expected found end
+SYNTAX:   Symbol expected := found end 
+SYNTAX:   Operand Expected 
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -1187,7 +1184,7 @@ ________________________________________________________
 ________________________________________________________ 
  STATIC STORAGE REQUIRED is 12 BYTES
 ________________________________________________________ 
-testing mytests/testy.pas
+testing TestSuite/testy.pas
 
 ________________________________________________________ 
  THE PROGRAM TEXT
@@ -1200,7 +1197,7 @@ begin
 .
 $
 ________________________________________________________ 
- SYNTAX: expected: end found: . (in match)
+SYNTAX:   Symbol expected end found . 
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -1214,7 +1211,7 @@ ________________________________________________________
 ________________________________________________________ 
  STATIC STORAGE REQUIRED is 12 BYTES
 ________________________________________________________ 
-testing mytests/testz.pas
+testing TestSuite/testz.pas
 
 ________________________________________________________ 
  THE PROGRAM TEXT
@@ -1227,7 +1224,7 @@ begin
 end 
 $
 ________________________________________________________ 
- SYNTAX: expected: . found: $ (in match)
+SYNTAX:   Symbol expected . found $ 
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE

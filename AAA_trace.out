@@ -2,25 +2,26 @@
 ________________________________________________________ 
  THE PROGRAM TEXT
 ________________________________________________________ 
-program testok1(input, output);  
-var A, B, C: integer;  
+program fun1(input, output);
+var A, B, A: integer;  
 
 begin
 A := B + C * 2  
 end.
 $
 ________________________________________________________ 
-PARSE SUCCESSFUL! 
+SEMANTIC: duplicate variable name
+SEMANTIC: id not found in ST
+SEMANTIC: type mismatch in assign
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
 ________________________________________________________ 
        NAME       ROLE       TYPE      SIZE      ADDR     
 ________________________________________________________ 
-    testok1    program    program        12         0 
+       fun1    program    program         8         0 
           A        var    integer         4         0 
           B        var    integer         4         4 
-          C        var    integer         4         8 
 ________________________________________________________ 
- STATIC STORAGE REQUIRED is 12 BYTES
+ STATIC STORAGE REQUIRED is 8 BYTES
 ________________________________________________________ 

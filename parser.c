@@ -35,6 +35,7 @@ static void esyntax(char *msg) {
     printf("\nSYNTAX: %s", msg);
     is_parse_ok = 0;
 }
+
 static void esemantic(char *msg){
     printf("\nSEMANTIC: %s", msg);
     is_parse_ok = 0;
@@ -55,8 +56,12 @@ static void match(int t) {
         lookahead = get_token();
     else {
         is_parse_ok = 0;
-        printf("\n SYNTAX: expected: %s found: %s (in match)",
+        if (t == id){
+            printf("\nSYNTAX:   ID expected found %s ", get_lexeme());
+        } else {
+        printf("\nSYNTAX:   Symbol expected %s found %s ",
                tok2lex(t), get_lexeme());
+        }
     }
 }
 
@@ -68,11 +73,8 @@ static void match(int t) {
 static void prog_header() {
     if (DEBUG)
         printf("\n *** In  program_header");
-    if (lookahead == program)
-        match(program);
-    else
-        esyntax("Did not find program token");
 
+    match(program);
     if (lookahead == id) {
         addp_name(get_lexeme());
         match(id);
@@ -103,7 +105,7 @@ static void type() {
         setv_type(boolean);
         match(boolean);
     } else {
-        esemantic("type not defined");
+        printf("\nSYNTAX:   Type name expected found %s ", get_lexeme());
         setv_type(error);
     }
 }
@@ -115,7 +117,7 @@ static void id_list() {
             addv_name(get_lexeme());
             match(id);
         } else {
-            esemantic("duplicate variable name");
+            printf("\nSEMANTIC: ID already declared: %s", get_lexeme());
             match(id);
         }
     }
@@ -143,12 +145,8 @@ static void var_dec_list() {
 static void var_part() {
     if (DEBUG)
         printf("\n *** In var_part");
-    if (lookahead == var) {
-        match(var);
-        var_dec_list();
-    } else {
-        printf("\n*** NOTE: Did not find var, no variables declared. ***");
-    }
+    match(var);
+    var_dec_list();
 }
 
 /***************     stat_part   ******************/
@@ -161,13 +159,12 @@ static toktyp operand() {
             toktyp_R = get_ntype(get_lexeme());
             match(id);
         } else {
-            esemantic("id not found in ST");
+            printf("\nSEMANTIC: ID NOT declared: %s", get_lexeme());
+            match(id);
         }
     } else if (lookahead == number) {
         match(number);
         toktyp_R = integer;
-    } else {
-        esemantic("no operand found");
     }
     return toktyp_R;
 }
@@ -182,7 +179,7 @@ static toktyp factor() {
     } else if (lookahead == id || lookahead == number) {
         toktyp_R = operand();
     } else {
-        esemantic("*** UNEXPECTED SYMBOL ***");
+        printf("\nSYNTAX:   Operand Expected ");
     }
     return toktyp_R;
 }
@@ -215,14 +212,14 @@ static void assign_stat() {
     if (lookahead == id) {
         if (find_name(get_lexeme())) {
             toktyp_L = get_ntype(get_lexeme());
-        } else {
-            esemantic("assign id not found in ST");
         }
     }
     match(id);
     match(assign);
-    if (toktyp_L != expr()) {
-        esemantic("type mismatch in assign");
+    toktyp toktyp_R = expr();
+    if (toktyp_L != toktyp_R) {
+        printf("\nSEMANTIC: Assign types: %s := %s", tok2lex(toktyp_L), tok2lex(toktyp_R));
+        is_parse_ok = 0;
     }
 }
 static void stat() {
@@ -247,6 +244,13 @@ static void stat_part() {
     stat_list();
     match(end);
     match('.');
+    if(lookahead == '$'){
+        match('$');
+    } else if(lookahead != '$'){
+        printf("\nSYNTAX:   Extra symbols after end of parse! ");
+        
+        is_parse_ok = 0;
+    }
 }
 /**********************************************************************/
 /*  PUBLIC METHODS for this OBJECT  (EXPORTED)                        */
@@ -261,17 +265,13 @@ int parser() {
         var_part();
         stat_part();
     } else {
-        printf("\n WARNING: input file is empty");
+        printf("\nSYNTAX:   Input file is empty ");
         is_parse_ok = 0;
-    }
-
-    if(lookahead == '$'){
-        match('$');
     }
 
     /*if(get_token() != nfound){
             is_parse_ok = 0;
-            esyntax("Symbols found after end of parse!");
+            printf("\nSYNTAX:   Symbols found after end of parse!");
     }*/
 
     p_parse_status();
