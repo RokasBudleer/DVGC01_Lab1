@@ -39,12 +39,13 @@ begin
 end.
 $
 ________________________________________________________ 
-SYNTAX:   ID expected found 3
+SYNTAX:   ID expected found 3 
 SYNTAX:   Symbol expected := found 3 
-SEMANTIC: Assign types: undef := integer
+SEMANTIC: Assign types: error := integer
 SYNTAX:   Symbol expected end found A 
 SYNTAX:   Symbol expected . found A 
-SYNTAX:   Extra symbols found after end of parse!
+SYNTAX:   Extra symbols after end of parse! 
+          A := B + C * 2 end . 
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -74,10 +75,11 @@ $
 ________________________________________________________ 
 SYNTAX:   Symbol expected := found : 
 SYNTAX:   Operand Expected 
-SEMANTIC: Assign types: integer := undef
+SEMANTIC: Assign types: integer := error
 SYNTAX:   Symbol expected end found : 
 SYNTAX:   Symbol expected . found : 
-SYNTAX:   Extra symbols found after end of parse!
+SYNTAX:   Extra symbols after end of parse! 
+          : = B + C * 2 end . 
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -139,7 +141,8 @@ OOOOPS!!!
 
 $
 ________________________________________________________ 
-SYNTAX:   Extra symbols found after end of parse!
+SYNTAX:   Extra symbols after end of parse! 
+          OOOOPS ! ! ! 
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -167,7 +170,7 @@ end.
 $
 ________________________________________________________ 
 SEMANTIC: ID NOT declared: D
-PARSE SUCCESSFUL! 
+SEMANTIC: Assign types: integer := undef
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -222,10 +225,10 @@ A := B + C * 2
 end.
 $
 ________________________________________________________ 
-SYNTAX:   Type name expected found double
+SYNTAX:   Type name expected found double 
 SYNTAX:   Symbol expected ; found double 
 SYNTAX:   Symbol expected : found ; 
-SYNTAX:   Type name expected found ;
+SYNTAX:   Type name expected found ; 
 SEMANTIC: Assign types: error := undef
 ________________________________________________________ 
 ________________________________________________________ 
@@ -311,7 +314,7 @@ ________________________________________________________
 
 $
 ________________________________________________________ 
- WARNING: input file is empty
+SYNTAX:   Input file is empty 
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -334,7 +337,7 @@ A := B + C * 2
 end.
 $
 ________________________________________________________ 
-PARSE SUCCESSFUL! 
+SYNTAX:   Symbol expected program found testb 
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -361,7 +364,7 @@ A := B + C * 2
 end.
 $
 ________________________________________________________ 
-SYNTAX:   ID expected found (
+SYNTAX:   ID expected found ( 
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -577,7 +580,9 @@ A := B + C * 2
 end.
 $
 ________________________________________________________ 
-SEMANTIC: Assign types: undef := integer
+SYNTAX:   ID expected found , 
+SEMANTIC: ID NOT declared: A
+SEMANTIC: Assign types: error := integer
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -604,7 +609,7 @@ end.
 $
 ________________________________________________________ 
 SYNTAX:   Symbol expected : found B 
-SYNTAX:   Type name expected found B
+SYNTAX:   Type name expected found B 
 SYNTAX:   Symbol expected ; found B 
 SEMANTIC: Assign types: error := integer
 ________________________________________________________ 
@@ -660,7 +665,7 @@ A := B + C * 2
 end.
 $
 ________________________________________________________ 
-SYNTAX:   Type name expected found ;
+SYNTAX:   Type name expected found ; 
 SEMANTIC: Assign types: error := undef
 ________________________________________________________ 
 ________________________________________________________ 
@@ -932,11 +937,11 @@ $
 ________________________________________________________ 
 SEMANTIC: ID already declared: A
 SYNTAX:   Symbol expected : found := 
-SYNTAX:   Type name expected found :=
+SYNTAX:   Type name expected found := 
 SYNTAX:   Symbol expected ; found := 
 SYNTAX:   Symbol expected begin found := 
-SYNTAX:   ID expected found :=
-SEMANTIC: Assign types: undef := integer
+SYNTAX:   ID expected found := 
+SEMANTIC: Assign types: error := integer
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -963,8 +968,8 @@ begin
 end.
 $
 ________________________________________________________ 
-SYNTAX:   ID expected found :=
-SEMANTIC: Assign types: undef := integer
+SYNTAX:   ID expected found := 
+SEMANTIC: Assign types: error := integer
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -993,10 +998,11 @@ $
 ________________________________________________________ 
 SYNTAX:   Symbol expected := found = 
 SYNTAX:   Operand Expected 
-SEMANTIC: Assign types: integer := undef
+SEMANTIC: Assign types: integer := error
 SYNTAX:   Symbol expected end found = 
 SYNTAX:   Symbol expected . found = 
-SYNTAX:   Extra symbols found after end of parse!
+SYNTAX:   Extra symbols after end of parse! 
+          = B + C * 2 end . 
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -1025,10 +1031,11 @@ $
 ________________________________________________________ 
 SYNTAX:   Symbol expected := found : 
 SYNTAX:   Operand Expected 
-SEMANTIC: Assign types: integer := undef
+SEMANTIC: Assign types: integer := error
 SYNTAX:   Symbol expected end found : 
 SYNTAX:   Symbol expected . found : 
-SYNTAX:   Extra symbols found after end of parse!
+SYNTAX:   Extra symbols after end of parse! 
+          : B + C * 2 end . 
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -1083,7 +1090,7 @@ end.
 $
 ________________________________________________________ 
 SYNTAX:   Operand Expected 
-PARSE SUCCESSFUL! 
+SEMANTIC: Assign types: integer := undef
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -1112,7 +1119,8 @@ $
 ________________________________________________________ 
 SYNTAX:   Symbol expected end found C 
 SYNTAX:   Symbol expected . found C 
-SYNTAX:   Extra symbols found after end of parse!
+SYNTAX:   Extra symbols after end of parse! 
+          C * 2 end . 
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -1141,7 +1149,8 @@ $
 ________________________________________________________ 
 SYNTAX:   Symbol expected end found - 
 SYNTAX:   Symbol expected . found - 
-SYNTAX:   Extra symbols found after end of parse!
+SYNTAX:   Extra symbols after end of parse! 
+          - 2 end . 
 ________________________________________________________ 
 ________________________________________________________ 
  THE SYMBOL TABLE
@@ -1168,7 +1177,7 @@ begin
 end.
 $
 ________________________________________________________ 
-SYNTAX:   ID expected found end
+SYNTAX:   ID expected found end 
 SYNTAX:   Symbol expected := found end 
 SYNTAX:   Operand Expected 
 ________________________________________________________ 

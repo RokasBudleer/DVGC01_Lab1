@@ -93,7 +93,7 @@ int get_token() {
         while(isdigit(buffer[pbuf])) {
             get_char();
         }
-        return lex2tok(lexbuf);
+        return number;
     
     } else if(isspecial(lexbuf[0])){
         return lex2tok(lexbuf);
